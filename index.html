@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>심플 수지대조표</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background-color: #f4f4f4; }
+        .income { color: blue; }
+        .expense { color: red; }
+        .total-section { margin-top: 20px; font-weight: bold; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+    <h2>📊 나의 수지대조표</h2>
+    
+    <div>
+        <input type="text" id="desc" placeholder="항목 (예: 월급, 점심값)">
+        <input type="number" id="amount" placeholder="금액">
+        <select id="type">
+            <option value="income">수입</option>
+            <option value="expense">지출</option>
+        </select>
+        <button onclick="addItem()">추가하기</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>항목</th>
+                <th>구분</th>
+                <th>금액</th>
+            </tr>
+        </thead>
+        <tbody id="list">
+            </tbody>
+    </table>
+
+    <div class="total-section">
+        현재 잔액: <span id="total">0</span>원
+    </div>
+
+    <script>
+        let balance = 0;
+
+        function addItem() {
+            const desc = document.getElementById('desc').value;
+            const amount = parseInt(document.getElementById('amount').value);
+            const type = document.getElementById('type').value;
+
+            if (!desc || isNaN(amount)) return alert("내용을 입력해주세요!");
+
+            const list = document.getElementById('list');
+            const row = list.insertRow();
+            
+            row.innerHTML = `
+                <td>${desc}</td>
+                <td class="${type}">${type === 'income' ? '수입' : '지출'}</td>
+                <td>${amount.toLocaleString()}원</td>
+            `;
+
+            // 잔액 계산
+            if (type === 'income') balance += amount;
+            else balance -= amount;
+
+            document.getElementById('total').innerText = balance.toLocaleString();
+            
+            // 입력창 초기화
+            document.getElementById('desc').value = '';
+            document.getElementById('amount').value = '';
+        }
+    </script>
+</body>
+</html>
