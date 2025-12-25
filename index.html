@@ -3,95 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025 진공묘유 보은 결산기</title>
+    <title>2025 영생 진강급 결산기</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .ilwon-circle { border: 4px solid #333; border-radius: 50%; width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
-        .bg-won { background-color: #f8f9fa; }
+        .ilwon-circle { border: 4px solid #333; border-radius: 50%; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+        .bg-won { background-color: #fcfcfc; }
+        .input-group { border-left: 3px solid #e5e7eb; padding-left: 1rem; margin-bottom: 1.5rem; }
     </style>
 </head>
-<body class="bg-won p-4 sm:p-8">
-    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6 border border-gray-200">
+<body class="bg-won p-4">
+    <div class="max-w-md mx-auto bg-white rounded-2xl shadow-xl overflow-hidden p-6 border border-gray-100">
         <div class="text-center mb-6">
-            <div class="ilwon-circle mb-2"><span class="text-xs font-bold text-gray-400">一圓相</span></div>
-            <h1 class="text-2xl font-bold text-gray-800">2025 보은 결산기</h1>
-            <p class="text-sm text-gray-500">진공묘유의 지혜로 영생을 결산합니다</p>
+            <div class="ilwon-circle mb-3"><span class="text-xs font-bold text-gray-400">一圓相</span></div>
+            <h1 class="text-2xl font-black text-gray-800">2025 보은 결산기</h1>
+            <p class="text-md font-bold text-blue-600 mt-1">"영생의 진강급을 결산합니다"</p>
         </div>
 
-        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
-            <label class="block text-sm font-bold text-gray-700 mb-1">연간 총 혜수 (입은 은혜)</label>
-            <input type="number" id="totalHyesu" value="100000000" class="w-full p-2 border rounded text-right font-mono" onchange="calculate()">
-            <p class="text-xs text-gray-400 mt-1">* 과학적 산출 기준: 연간 1억 원</p>
+        <div class="mb-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
+            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">연간 총 혜수 (입은 은혜)</label>
+            <div class="text-xl font-mono font-bold text-right text-gray-800">₩ 100,000,000</div>
+            <p class="text-[10px] text-gray-400 mt-1 text-right">* 천지·부모·동포·법률 과학적 산출 근거 합산</p>
         </div>
 
-        <div id="sections">
+        <div id="hyesiInputs">
+            <div class="input-group" style="border-color: #10b981;">
+                <h3 class="font-bold text-green-600 mb-2">1. 천지보은 (환경/진리)</h3>
+                <div class="space-y-2">
+                    <div>
+                        <label class="text-[11px] text-gray-500">진리탐구/환경수호 활동 (시간 입력)</label>
+                        <input type="number" data-type="time" id="tj_time" placeholder="예: 50시간" class="w-full p-2 border rounded text-right text-sm" oninput="calculate()">
+                    </div>
+                    <input type="number" data-type="money" id="tj_money" placeholder="직접 기부액(원)" class="w-full p-2 border rounded text-right text-sm" oninput="calculate()">
+                </div>
             </div>
 
-        <div class="mt-8 p-6 bg-blue-50 rounded-xl border-2 border-blue-200 text-center">
-            <h2 class="text-lg font-bold text-blue-800 mb-2">나의 보은 지수 (GR)</h2>
-            <div id="grDisplay" class="text-4xl font-black text-blue-600 mb-1">0%</div>
-            <div id="statusResult" class="text-sm font-bold text-blue-500">계산 대기 중...</div>
-            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-4">
-                <div id="grBar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+            <div class="input-group" style="border-color: #3b82f6;">
+                <h3 class="font-bold text-blue-600 mb-2">2. 부모보은</h3>
+                <div class="space-y-2">
+                    <div>
+                        <label class="text-[11px] text-gray-500">부모님 및 무자력자 보호 (시간)</label>
+                        <input type="number" data-type="time" id="bm_time" class="w-full p-2 border rounded text-right text-sm" oninput="calculate()">
+                    </div>
+                    <input type="number" data-type="money" id="bm_money" placeholder="부모봉양/사회지원(원)" class="w-full p-2 border rounded text-right text-sm" oninput="calculate()">
+                </div>
+            </div>
+
+            <div class="input-group" style="border-color: #f59e0b;">
+                <h3 class="font-bold text-orange-500 mb-2">3. 동포보은 (상생/봉사)</h3>
+                <div class="space-y-2">
+                    <div>
+                        <label class="text-[11px] text-gray-500">재능기부/자리이타 활동 (시간)</label>
+                        <input type="number" data-type="time" id="dp_time" class="w-full p-2 border rounded text-right text-sm" oninput="calculate()">
+                    </div>
+                    <input type="number" data-type="money" id="dp_money" placeholder="사회환원/공익성금(원)" class="w-full p-2 border rounded text-right text-sm" oninput="calculate()">
+                </div>
+            </div>
+
+            <div class="input-group" style="border-color: #ef4444;">
+                <h3 class="font-bold text-red-600 mb-2">4. 법률보은 (정의/공도)</h3>
+                <div class="space-y-2">
+                    <div>
+                        <label class="text-[11px] text-gray-500">정의실천/공도활동 (시간)</label>
+                        <input type="number" data-type="time" id="bl_time" class="w-full p-2 border rounded text-right text-sm" oninput="calculate()">
+                    </div>
+                    <input type="number" data-type="money" id="bl_money" placeholder="납세 외 공익기여(원)" class="w-full p-2 border rounded text-right text-sm" oninput="calculate()">
+                </div>
             </div>
         </div>
-        <p class="text-[10px] text-gray-400 mt-6 text-center">원불교 일원상 진리 및 사은사요 기반</p>
+
+        <div class="mt-6 p-4 bg-blue-50 rounded-xl">
+            <h4 class="text-xs font-bold text-blue-800 mb-2">보은 심법(心法) 대조</h4>
+            <div class="flex gap-2">
+                <select id="sim_pub" class="text-xs p-2 border rounded w-1/2" onchange="calculate()">
+                    <option value="1.0">위가족 (1.0)</option>
+                    <option value="1.5">위사회 (1.5)</option>
+                    <option value="2.0" selected>위세계 (2.0)</option>
+                </select>
+                <select id="sim_no" class="text-xs p-2 border rounded w-1/2" onchange="calculate()">
+                    <option value="1.0">상 있음 (1.0)</option>
+                    <option value="2.0" selected>무상(無相) (2.0)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mt-8 p-6 bg-gray-900 rounded-2xl text-center text-white">
+            <h2 class="text-sm font-bold text-gray-400 mb-2">나의 보은 지수 (GR)</h2>
+            <div id="grDisplay" class="text-5xl font-black text-yellow-400 mb-2">0%</div>
+            <div id="statusResult" class="text-md font-bold">결산 대조 중...</div>
+            <div class="w-full bg-gray-700 rounded-full h-1.5 mt-4">
+                <div id="grBar" class="bg-yellow-400 h-1.5 rounded-full" style="width: 0%"></div>
+            </div>
+        </div>
     </div>
 
     <script>
-        const sections = [
-            { id: 'cheonji', name: '천지보은', color: 'green' },
-            { id: 'bumo', name: '부모보은(인재양성)', color: 'blue' },
-            { id: 'dongpo', name: '동포보은', color: 'yellow' },
-            { id: 'beopryul', name: '법률보은', color: 'red' }
-        ];
-
-        const sectionsContainer = document.getElementById('sections');
-        sections.forEach(s => {
-            const div = document.createElement('div');
-            div.className = `mb-6 pb-4 border-b border-gray-100`;
-            div.innerHTML = `
-                <h3 class="font-bold text-${s.color}-600 mb-3">${s.name}</h3>
-                <div class="grid grid-cols-1 gap-3">
-                    <input type="number" id="${s.id}_val" placeholder="기초 가치(원)" class="p-2 border rounded w-full text-right" oninput="calculate()">
-                    <div class="flex gap-2">
-                        <select id="${s.id}_pub" class="text-xs p-1 border rounded w-1/2" onchange="calculate()">
-                            <option value="1.0">위가족 (1.0)</option>
-                            <option value="1.5">위사회 (1.5)</option>
-                            <option value="2.0" selected>위세계 (2.0)</option>
-                        </select>
-                        <select id="${s.id}_no" class="text-xs p-1 border rounded w-1/2" onchange="calculate()">
-                            <option value="1.0">상 있음 (1.0)</option>
-                            <option value="2.0" selected>무상보시 (2.0)</option>
-                        </select>
-                    </div>
-                </div>
-            `;
-            sectionsContainer.appendChild(div);
-        });
+        const TIME_UNIT_PRICE = 30000; // 1시간 정성 = 3만원 환산
 
         function calculate() {
-            let totalHyesi = 0;
-            const hyesu = parseFloat(document.getElementById('totalHyesu').value) || 1;
+            let totalHyesiVal = 0;
+            const hyesuVal = 100000000;
 
-            sections.forEach(s => {
-                const val = parseFloat(document.getElementById(`${s.id}_val`).value) || 0;
-                const pub = parseFloat(document.getElementById(`${s.id}_pub`).value);
-                const no = parseFloat(document.getElementById(`${s.id}_no`).value);
-                totalHyesi += (val * pub * no);
+            // 시간 환산액 합산
+            const times = document.querySelectorAll('input[data-type="time"]');
+            times.forEach(t => {
+                totalHyesiVal += (parseFloat(t.value) || 0) * TIME_UNIT_PRICE;
             });
 
-            const gr = (totalHyesi / hyesu) * 100;
+            // 직접 기부액 합산
+            const moneys = document.querySelectorAll('input[data-type="money"]');
+            moneys.forEach(m => {
+                totalHyesiVal += (parseFloat(m.value) || 0);
+            });
+
+            // 가중치 적용
+            const pub = parseFloat(document.getElementById('sim_pub').value);
+            const no = parseFloat(document.getElementById('sim_no').value);
+            const finalHyesi = totalHyesiVal * pub * no;
+
+            const gr = (finalHyesi / hyesuVal) * 100;
+            
             document.getElementById('grDisplay').innerText = gr.toFixed(1) + '%';
             document.getElementById('grBar').style.width = Math.min(gr, 100) + '%';
 
-            const resultTxt = document.getElementById('statusResult');
+            const status = document.getElementById('statusResult');
             if(gr >= 100) {
-                resultTxt.innerText = "🎉 진급(進級): 복락의 자산 저축 중!";
-                resultTxt.className = "text-sm font-bold text-green-600";
+                status.innerText = "🌟 진급(進級): 성현의 길에 합함";
+                status.className = "text-md font-bold text-green-400";
             } else {
-                resultTxt.innerText = "💪 분발: 빚을 갚아가는 보은의 길";
-                resultTxt.className = "text-sm font-bold text-orange-500";
+                status.innerText = "🌱 강급 경계: 보은의 정성이 더 필요함";
+                status.className = "text-md font-bold text-orange-400";
             }
         }
     </script>
